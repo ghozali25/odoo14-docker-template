@@ -31,6 +31,15 @@ mkdir -p data/postgres data/odoo addons custom_addons
 docker compose up -d --build
 ```
 
+Bila folder di atas dibuat memakai `sudo`, samakan pemiliknya dengan user
+Odoo di container (kalau tidak, Odoo error `Permission denied` di
+`/var/lib/odoo/sessions`):
+
+```bash
+docker compose exec -u 0 odoo chown -R odoo:odoo /var/lib/odoo /mnt/extra-addons /mnt/custom-addons
+docker compose restart odoo
+```
+
 Odoo bisa dibuka di `http://<ip-server>:8069`.
 
 Folder penting (semua di host, aman dari `docker compose up -d` berulang):
