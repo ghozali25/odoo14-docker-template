@@ -88,6 +88,14 @@ dan untuk service `odoo`:
 
 Buat dulu foldernya: `sudo mkdir -p /mnt/storage/odoo14/{data/postgres,data/odoo,addons,custom_addons}`.
 
+## Alias shell (opsional)
+
+File `odoo-aliases.sh` berisi alias praktis (`odoo-restart`, `odoo-logs`,
+`odoo-db`, `odoo-shell`, dll.) supaya tidak perlu mengetik perintah
+docker compose yang panjang. Tempel isinya ke `~/.zshrc` atau `~/.bashrc`,
+sesuaikan path compose pada baris `export ODOO_COMPOSE=...`, lalu muat
+ulang shell-nya (`source ~/.zshrc`).
+
 ## Catatan
 
 - Jangan commit file `.env` asli; repo hanya menyimpan `.env.example`.
