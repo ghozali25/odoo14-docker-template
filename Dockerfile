@@ -39,6 +39,8 @@ RUN apt-get update && \
         libwebp-dev \
         libharfbuzz-dev \
         libfribidi-dev \
+        freetds-dev \
+        libkrb5-dev \
         libxcb1 \
         libx11-6 \
         libxext6 \
@@ -80,6 +82,7 @@ RUN pip install --no-cache-dir --no-build-isolation -r requirements.txt
 # auto_database_backup:    paramiko, boto3, dropbox, pyncclient, nextcloud-api-wrapper
 # izi_tokopedia (2026-10-08): pycryptodomex, backports-datetime-fromisoformat
 # izi_data_lib_* (2026-10-08): mysql-connector-python, gspread, oauth2client
+# izi_data_lib_mssql (2026-10-08): pymssql
 RUN pip install --no-cache-dir \
         pandas \
         "sqlparse>=0.4.2" \
@@ -98,6 +101,12 @@ RUN pip install --no-cache-dir \
         mysql-connector-python \
         gspread \
         oauth2client
+
+# pymssql tidak punya wheel ARM64 untuk Python 3.8, jadi compile dari source:
+# butuh Cython 0.29.21 (sudah dipasang di atas) + header FreeTDS & Kerberos,
+# dan versinya ditentukan setuptools_scm (tidak ada .git saat build image).
+RUN pip install --no-cache-dir "setuptools_scm==7.1.0" && \
+    SETUPTOOLS_SCM_PRETEND_VERSION=2.2.7 pip install --no-cache-dir --no-build-isolation "pymssql==2.2.7"
 
 RUN npm install -g rtlcss
 
