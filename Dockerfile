@@ -78,6 +78,8 @@ RUN pip install --no-cache-dir --no-build-isolation -r requirements.txt
 # upgrade_analysis:        odoorpc, openupgradelib
 # sql_export_excel:        openpyxl
 # auto_database_backup:    paramiko, boto3, dropbox, pyncclient, nextcloud-api-wrapper
+# izi_tokopedia (2026-10-08): pycryptodomex, backports-datetime-fromisoformat
+# izi_data_lib_* (2026-10-08): mysql-connector-python, gspread, oauth2client
 RUN pip install --no-cache-dir \
         pandas \
         "sqlparse>=0.4.2" \
@@ -90,7 +92,12 @@ RUN pip install --no-cache-dir \
         boto3 \
         dropbox \
         pyncclient \
-        nextcloud-api-wrapper
+        nextcloud-api-wrapper \
+        pycryptodomex \
+        backports-datetime-fromisoformat \
+        mysql-connector-python \
+        gspread \
+        oauth2client
 
 RUN npm install -g rtlcss
 
