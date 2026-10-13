@@ -21,6 +21,7 @@ RUN apt-get update && \
         build-essential \
         gcc \
         g++ \
+        cmake \
         wkhtmltopdf \
         make \
         libpq-dev \
@@ -101,6 +102,9 @@ RUN pip install --no-cache-dir \
         mysql-connector-python \
         gspread \
         oauth2client
+
+# face_recognition (dlib compile ~25 mnt di ARM; untuk hr_attendance_face_detection) (2026-10-12)
+RUN pip install --no-cache-dir face_recognition==1.3.0
 
 # pymssql tidak punya wheel ARM64 untuk Python 3.8, jadi compile dari source:
 # butuh Cython 0.29.21 (sudah dipasang di atas) + header FreeTDS & Kerberos,
