@@ -41,6 +41,7 @@ RUN apt-get update && \
         libharfbuzz-dev \
         libfribidi-dev \
         freetds-dev \
+        libsybdb5 \
         libkrb5-dev \
         libxcb1 \
         libx11-6 \
